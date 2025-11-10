@@ -77,13 +77,17 @@ export function MemoryTile({ tile }: MemoryTileProps) {
   const tileColor = tile.isActive ? (hovered ? "#f0f0f0" : "#ffffff") : "#cccccc";
   const edgeColor = "#d4a574";
   
+  const eventHandlers = tile.isActive ? {
+    onClick: handleClick,
+    onPointerOver: handlePointerOver,
+    onPointerOut: handlePointerOut,
+  } : {};
+  
   return (
     <group
       ref={groupRef}
       position={tile.position}
-      onClick={handleClick}
-      onPointerOver={handlePointerOver}
-      onPointerOut={handlePointerOut}
+      {...eventHandlers}
     >
       <RoundedBox
         args={[1, 0.2, 1]}
